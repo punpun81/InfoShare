@@ -19,10 +19,8 @@ from django.urls import include, path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('')),  # Incluir las URLs de mi_app
+    path('', include('infoproducto.urls'))
 ]
-
-
 # #from django.urls import path
 # from . import views
 

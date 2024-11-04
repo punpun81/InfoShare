@@ -14,7 +14,6 @@ class Productos(models.Model):
     Estado = models.BooleanField(default=True)
 
 
-
 # # Create your models here.
 # from django.db import models
 # from django.contrib.auth.models import User

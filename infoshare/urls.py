@@ -19,12 +19,13 @@ from django.urls import include, path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('infoproducto.urls'))
+    path("", include('infoproducto.urls')),
 ]
-# #from django.urls import path
-# from . import views
 
-# urlpatterns = [
-#     path('', views.home, name='home'),  # Página principal
-#     path('productos/', views.listado, name='listado'),  # Página de listado
-# ]
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.home, name='home'),
+    path('productos/', views.listado, name='listado'),
+]

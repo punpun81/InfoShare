@@ -20,6 +20,12 @@ def inicio(request):
     }
     return render(request, 'pages/home.html', contexto)
 
+#
+def home(request):
+    return HttpResponse("Bienvenido a la página principal de InfoProducto")
+
+def listado(request):
+    return HttpResponse("Este es el listado de productos")
 # Crear vistas genéricas
 
 def home(request):

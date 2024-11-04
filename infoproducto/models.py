@@ -2,16 +2,44 @@ from django.db import models
 from datetime import datetime as dt
 
 # Create your models here.
-class Productos(models.Model):
 
-    # Diseñar los campos de mi tabla
-    ProductoId = models.AutoField(primary_key=True, auto_created=True)
-    Fecha_Ingreso = models.DateTimeField(default=dt.now())
-    Nombre = models.TextField(null=False, max_length=50)
-    Descripcion = models.TextField(null=False, max_length=250)
-    Precio = models.DecimalField(null=False, decimal_places=2, max_digits=12)
-    Cantidad = models.IntegerField(null=False)
-    Estado = models.BooleanField(default=True)
+class Usuario(models.Model):
+    
+    id_usuario = models.models.AutoField(primay_key=True)
+    nombre = models.models.CharField(max_length=100, null = False)
+    email = models.EmailField(unique=True, null=False)
+    rol = models.models.CharField(max_lenght=10, choices =[('comprador', 'Comprador'),('vendedor', ' Vendedr')]), null=False
+    fecha_registro = models.DateTimeField(auto_now_add=True)
+    saldo = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+
+    def _str_(self):
+        return self.nombre
+    
+
+class Contenidos (models.Model):
+    
+    id_contenido = models.models.AutoField(primary_key=True)
+    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    titulo = models.CharField(max_length=200, null=False)
+    descripcion = models.models.TextField()
+    tipo = models.CharField(max_length=10, choices=[('gratuito', 'Gratuito'), ('pago', 'Pago')], null=False)
+    precio = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    categoria = models.CharField(max_length=200)
+    fecha_publicacion = models.DateTimeField(auto_now_add=True)
+
+    def _str_(self):
+        return self.titulo
+
+class Transacciones(models.Model):
+    
+    id_transaccion = models.AutoField(primary_key=True)
+    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    conocimiento = models.ForeignKey(Contenidos, on_delete=models.CASCADE)
+    fecha_transaccion = models.DateTimeField(auto_now_add=True)
+    monto = models.DecimalField(max_digits=10, decimal_places=2, null=False)
+
+    def _str_(self):
+        return f"Transaccion {self.id_transaccion}"
 
 
 # # Create your models here.

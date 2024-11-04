@@ -18,7 +18,7 @@ def inicio(request):
         "esta_autenticado": autenticado,
         "user": usuario
     }
-    return render(request, 'pages/index.html', contexto)
+    return render(request, 'pages/home.html', contexto)
 
 # Crear vistas genéricas
 

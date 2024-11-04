@@ -27,6 +27,6 @@ def home(request):
 
 def listado(request):
     # Obtener todos los objetos del modelo, por ejemplo, Producto
-    from .models import Producto  # Asegúrate de tener un modelo Producto
-    productos = Producto.objects.all()
+    from .models import Productos  # Asegúrate de tener un modelo Producto
+    productos = Productos.objects.all()
     return render(request, 'listado.html', {'productos': productos})

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+<div class="container">
+    <div class="row">
+        <h2 class="text-center">¿Estás seguro de que deseas eliminar el siguiente producto?</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="card w-50">
+                <div class="card-body">
+                    <h2>Detalles del producto</h2>
+                    <hr>
+                    <p><b>Nombre:</b> {{ producto.Nombre }}</p>
+                    <p><b>Descripción:</b> {{ producto.Descripcion }}</p>
+                    <p><b>Precio:</b> {{ producto.Precio }}</p>
+                    <p><b>Existencias:</b> {{ producto.Cantidad }}</p>
+                    <p><b>Estado:</b> {{ producto.Estado|yesno:"Disponible,No Disponible" }}</p>
+                    <hr>
+                    <div class="d-flex justify-content-between">
+                        <button type="submit" class="btn btn-outline-danger">Eliminar</button> |
+                        <a class="btn btn-outline-info" href="{% url 'productos' %}">Volver</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

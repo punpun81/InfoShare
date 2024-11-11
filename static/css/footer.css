@@ -8,7 +8,7 @@ body {
 
 /* Footer always at the bottom */
 .footer {
-    background-color: #333;
+    background-color: #1b263b;
     color: #fff;
     text-align: center;
     padding: 20px 0;
@@ -40,11 +40,12 @@ body {
 }
 
 .social-links a {
-    color: #fff;
+    color: #ff9900;
     text-decoration: none;
     font-size: 16px;
 }
 
 .social-links a:hover {
+    color: #ff9900;
     text-decoration: underline;
 }

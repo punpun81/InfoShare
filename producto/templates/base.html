@@ -8,19 +8,70 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">   
     {% load static %}
     <link rel="stylesheet" href="{% static 'home/css/footer.css' %}">
-    
     {% block estilos %}{% endblock %}
     <style>
-      /* Personalización del color del fondo del navbar */
-      .navbar {
-        background-color: #1b263b; /* Fondo navbar */
-      }
-      .navbar a {
-        color: white; /* Color de los enlaces del navbar */
-      }
-      .navbar a:hover {
-        color: #ffcc00; /* Color al pasar el ratón sobre los enlaces */
-      }
+/* Estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+  }
+  
+  /* Barra de navegación */
+  .navbar {
+    background-color: #1b263b; /* Color actualizado */
+    padding: 10px 0;
+    text-align: center;
+  }
+  
+  .menu {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+  }
+  
+  .menu li {
+    position: relative;
+  }
+  
+  .menu a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    padding: 10px 20px;
+    display: block;
+    transition: color 0.3s ease;
+  }
+  
+  /* Efecto de animación */
+  .menu a::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: #ff9900; /* Color de la línea de animación */
+    bottom: 0;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .menu a:hover::before {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+  
+  .menu a:hover {
+    color: #ff9900; /* Color de texto al pasar el mouse */
+  }
+  
       
       .footer {
         background-color: #1b263b; /* Fondo del footer */
@@ -57,7 +108,7 @@
                 <a class="nav-link" href="{% url 'productos' %}">InfoProductos</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Novedades</a>
+                <a class="nav-link active" aria-current="page" href="#">Catalogo</a>
               </li>
             </ul>            
             <form class="d-flex">

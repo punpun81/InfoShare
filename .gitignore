@@ -1,0 +1,4 @@
+# No se agregará el entorno virtual
+/env/
+# No se agregará el archivo .env
+.env

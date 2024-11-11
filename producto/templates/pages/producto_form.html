@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block estilos %}
+<link rel="stylesheet" href="{% static 'producto/css/producto_crud.css' %}">
+{% endblock %}
+
+{% block contenido %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="d-flex justify-content-center">
+            <div class="card w-50">
+                <div class="card-header">
+                    <h2 class="card-title text-center">
+                        {% if form.instance.ProductoId %}
+                            Editar Producto
+                        {% else %}
+                            Guardar Producto
+                        {% endif %}
+                    </h2>
+                </div>
+                <form method="post">
+                    <div class="card-body">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                    </div>
+                    <div class="card-footer d-flex justify-content-between">
+                        <button class="btn btn-outline-success" type="submit" >Guardar</button> |
+                        <a class="btn btn-outline-info" href="{% url 'productos' %}">Cancelar</a>
+                    </div>
+                </form>               
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

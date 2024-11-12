@@ -1,60 +1,31 @@
-{% extends "base.html" %}
+{% extends "base.html" %}  <!-- Extiende de la plantilla base.html para usar su estructura general -->
 
-{% load static %}
-{% block estilos %}
-<link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% load static %}  <!-- Carga el archivo estático para poder usar la etiqueta -->
+
+{% block estilos %}  <!-- Define el bloque de estilos CSS que puede ser sobrescrito en otras plantillas -->
+<link rel="stylesheet" href="{% static 'css/index.css' %}">  <!-- Carga la hoja de estilos 'index.css' desde la carpeta estática -->
 {% endblock %}
 
-{% block username %} {{ user }} {% endblock %}
+{% block username %}  <!-- Define un bloque para mostrar el nombre del usuario -->
+  {{ user }}  <!-- Muestra el nombre del usuario autenticado (si está disponible) -->
+{% endblock %}
 
-{% block contenido %} 
+{% block contenido %}  <!-- Define el bloque de contenido principal para la página -->
 <div class="admin-dashboard mt-4">
-    <h1 class="text-center">Panel de Inicio</h1>
-    <hr>
+    <h1 class="text-center">Panel de Inicio</h1>  <!-- Título centrado de la página -->
+    <hr>  <!-- Línea horizontal para separar el título del contenido -->
 
-    <div class="d-flex justify-content-center">
-    <!-- Enlaces rápidos -->
-    <section class="quick-links">
-      <a href="{% url 'producto_create' %}" class="btn-add-product"
-        >Subir nueva infoproducto</a
-      >
-      <a href="{% url 'productos' %}" class="btn-view-inventory"
-        >Ver Todos los infoproducto</a
-      >
-    </section>
-   </div>
-    <!-- Lista de productos recientes -->
-    <section class="recent-products">
-      <h2 class="text-center">Últimos Productos Agregados</h2>
-      <table class="table-recent-products">
-        <thead>
-          <tr>
-            <th>Producto ID</th>
-            <th>Nombre</th>
-            <th>Descripción</th>
-            <th>Precio</th>
-            <th>Cantidad</th>
-            <th>Estado</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for producto in productos|slice:":3" %}
-          <tr>
-            <td>{{ producto.ProductoId }}</td>
-            <td>{{ producto.Nombre }}</td>
-            <td>{{ producto.Descripcion }}</td>
-            <td>${{ producto.Precio }}</td>
-            <td>{{ producto.Cantidad }}</td>
-            <td>{{ producto.Estado|yesno:"Activo,Inactivo" }}</td>
-          </tr>
-          {% empty %}
-          <tr>
-            <td colspan="6">No hay productos recientes.</td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </section>
-  </div>
-  
-{% endblock %}
+    <!-- Sección de imagen encima del texto -->
+    <div class="text-center">
+        <!-- Imagen centrada y más pequeña (25% del ancho del contenedor) -->
+        <img src="{% static 'img/infoproducto.jpg' %}" alt="Imagen" class="img-fluid w-25 mb-3">
+    </div>
+
+    <!-- Texto debajo de la imagen -->
+    <div class="text-center">
+        <p>¡Bienvenido a InfoShare!</p>
+        <p>InfoShare es una plataforma única donde la información se convierte en un valioso recurso que puedes compartir, aprender y monetizar. Aquí, los usuarios tienen la libertad de ofrecer su contenido sobre una amplia variedad de temas, ya sea de forma gratuita o a través de un pago, y aprovechar la oportunidad de generar ingresos pasivos con su experiencia y conocimientos.</p>
+        <p>Donde tu experiencia encuentra su audiencia compartiendo tu conocimiento. </p>
+    </div>
+</div>
+{% endblock %}  <!-- Fin del bloque de contenido -->

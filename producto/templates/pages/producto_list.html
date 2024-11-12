@@ -1,37 +1,42 @@
-{% extends "base.html" %}
+{% extends "base.html" %}  <!-- Extiende de la plantilla base.html, reutilizando la estructura común definida en ese archivo (encabezado, pie de página, etc.). -->
 
-{% block username %} {{ user }} {% endblock %}
+{% block username %} 
+  {{ user }}  <!-- Muestra el nombre del usuario actualmente autenticado, esto se genera dinámicamente desde Django (por ejemplo, si un usuario está logueado). -->
+{% endblock %}
 
-{% block contenido %}
-    <div class="container mt-4">
-        <div class="row">
-            <h1 class="text-center">Listado de InfoProductos</h1>
-            <div class="col-4 mb-4 ">
-              <a class="btn btn-primary" href="{% url 'producto_create' %}">Agregar infoproducto</a>
+{% block contenido %}  <!-- Define el bloque de contenido principal para esta página. -->
+    <div class="container mt-4">  <!-- Contenedor de Bootstrap con margen superior (mt-4) para agregar algo de espacio en la parte superior. -->
+        <div class="row">  <!-- Fila de Bootstrap que organiza los elementos dentro de una estructura de columnas. -->
+            <h1 class="text-center">Listado de InfoProductos</h1>  <!-- Título centrado de la página, indicando que es un listado de productos. -->
+            
+            <div class="col-4 mb-4">  <!-- Columna que contiene el botón para agregar un nuevo infoproducto. Tiene un margen inferior (mb-4). -->
+              <a class="btn btn-primary" href="{% url 'producto_create' %}">Agregar infoproducto</a>  <!-- Botón que redirige al formulario de creación de un nuevo infoproducto. Usa la URL correspondiente definida en Django para 'producto_create'. -->
             </div>
-            <hr>
-            <table class="table table-hover">
-                <thead>
+            
+            <hr>  <!-- Línea horizontal para separar la sección de agregar un producto del listado de productos. -->
+
+            <table class="table table-hover">  <!-- Tabla de Bootstrap con el estilo 'table-hover' para que las filas cambien de color cuando el usuario pase el mouse sobre ellas. -->
+                <thead>  <!-- Encabezado de la tabla, donde se definen los títulos de las columnas. -->
                   <tr>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Precio</th>
-                    <th scope="col">Acciones</th>
+                    <th scope="col">Nombre</th>  <!-- Columna para el nombre del infoproducto. -->
+                    <th scope="col">Precio</th>  <!-- Columna para el precio del infoproducto. -->
+                    <th scope="col">Acciones</th>  <!-- Columna para las acciones que se pueden realizar sobre el infoproducto (ver detalles, editar, eliminar). -->
                   </tr>
                 </thead>
-                <tbody>
-                  {% for producto in productos %}  
+                <tbody>  <!-- Cuerpo de la tabla, donde se muestran los datos de cada producto. -->
+                  {% for producto in productos %}  <!-- Bucle que recorre todos los productos pasados desde la vista de Django. -->
                   <tr>
-                    <td>{{ producto.Nombre }}</td>
-                    <td>$ {{ producto.Precio|floatformat:2 }}</td>
-                    <td>
-                      <a class="btn btn-info" href="{% url 'producto_detail' producto.ProductoId %}">Ver Detalles</a>
-                      <a class="btn btn-warning" href="{% url 'producto_update' producto.ProductoId %}">Editar</a>
-                      <a class="btn btn-danger" href="{% url 'producto_delete' producto.ProductoId %}">Eliminar</a>
+                    <td>{{ producto.Nombre }}</td>  <!-- Muestra el nombre del infoproducto. -->
+                    <td>$ {{ producto.Precio|floatformat:2 }}</td>  <!-- Muestra el precio del infoproducto con formato flotante (2 decimales). -->
+                    <td>  <!-- Columna de acciones -->
+                      <a class="btn btn-info" href="{% url 'producto_detail' producto.ProductoId %}">Ver Detalles</a>  <!-- Enlace para ver los detalles del producto. -->
+                      <a class="btn btn-warning" href="{% url 'producto_update' producto.ProductoId %}">Editar</a>  <!-- Enlace para editar el producto. -->
+                      <a class="btn btn-danger" href="{% url 'producto_delete' producto.ProductoId %}">Eliminar</a>  <!-- Enlace para eliminar el producto. -->
                     </td>
                   </tr>
-                  {% endfor %}
+                  {% endfor %}  <!-- Fin del bucle que recorre todos los productos. -->
                 </tbody>
-              </table>
+              </table>  <!-- Fin de la tabla. -->
         </div>
     </div>
 {% endblock %}

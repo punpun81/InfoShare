@@ -1,26 +1,34 @@
-{% extends "base.html" %}
+{% extends "base.html" %}  <!-- Extiende de la plantilla base.html para reutilizar la estructura general de la página (encabezado, pie de página, etc.). -->
 
-{% load static %}
-{% block estilos %}
-<link rel="stylesheet" href="{% static 'producto/css/producto_crud.css' %}">
+{% load static %}  <!-- Carga los archivos estáticos de Django, permitiendo el uso de la etiqueta para cargar archivos como imágenes, hojas de estilo, etc. -->
+
+{% block estilos %}  <!-- Define el bloque de estilos CSS que puede ser sobrescrito en otras plantillas. -->
+<link rel="stylesheet" href="{% static 'producto/css/producto_crud.css' %}">  <!-- Carga la hoja de estilos específica 'producto_crud.css' para esta página de detalles del producto. -->
 {% endblock %}
 
-{% block contenido %}
-    <div class="container">
-        <div class="row">
-            <div class="d-flex justify-content-center">
-                <div class="card w-50">
-                    <div class="card-body">
-                        <h2>Detalles del producto</h2>
-                        <hr>
-                        <p><b>Nombre:</b> {{ producto.Nombre }}</p>
-                        <p><b>Descripción:</b> {{ producto.Descripcion }}</p>
-                        <p><b>Precio:</b> {{ producto.Precio }}</p>
-                        <p><b>Existencias:</b> {{ producto.Cantidad }}</p>
-                        <p><b>Estado:</b> {{ producto.Estado|yesno:"Disponible,No Disponible" }}</p>
-                        <hr>
-                        <div class="d-flex justify-content-between">
+{% block contenido %}  <!-- Define el bloque principal de contenido de la página. -->
+    <div class="container">  <!-- Contenedor de Bootstrap para centrar y darle márgenes automáticamente al contenido. -->
+        <div class="row">  <!-- Fila de Bootstrap para organizar el contenido dentro de columnas (aunque aquí solo tenemos una columna). -->
+            <div class="d-flex justify-content-center">  <!-- Utiliza Flexbox de Bootstrap para centrar la tarjeta en la pantalla. -->
+                <div class="card w-50">  <!-- Crea una tarjeta con clase w-50 (50% del ancho del contenedor) para mostrar los detalles del producto. -->
+                    <div class="card-body">  <!-- Cuerpo de la tarjeta, donde se colocan los detalles del producto. -->
+                        <h2>Detalles del producto</h2>  <!-- Título principal de la tarjeta, indicando que estamos viendo los detalles de un producto. -->
+                        <hr>  <!-- Línea horizontal para separar el título de los detalles. -->
+                        
+                        <!-- Muestra los detalles del producto usando las variables pasadas desde la vista de Django: -->
+                        <p><b>Nombre:</b> {{ producto.Nombre }}</p>  <!-- Nombre del producto. -->
+                        <p><b>Descripción:</b> {{ producto.Descripcion }}</p>  <!-- Descripción del producto. -->
+                        <p><b>Precio:</b> {{ producto.Precio }}</p>  <!-- Precio del producto. -->
+                        <p><b>Existencias:</b> {{ producto.Cantidad }}</p>  <!-- Cantidad de existencias del producto. -->
+                        <p><b>Estado:</b> {{ producto.Estado|yesno:"Disponible,No Disponible" }}</p>  <!-- Estado del producto (Disponible o No Disponible). -->
+                        
+                        <hr>  <!-- Línea horizontal para separar los detalles del producto de las opciones de acción (volver, editar). -->
+
+                        <div class="d-flex justify-content-between">  <!-- Usa Flexbox para distribuir de manera equitativa los botones de acción. -->
+                            <!-- Botón "Volver" que lleva a la lista de productos, utilizando la URL definida en Django para 'productos'. -->
                             <a class="btn btn-outline-info" href="{% url 'productos' %}">Volver</a> |
+                            
+                            <!-- Botón "Editar" que lleva a la página de edición del producto, utilizando el 'ProductoId' del producto para generar la URL correcta para editarlo. -->
                             <a class="btn btn-outline-warning" href="{% url 'producto_update' producto.ProductoId %}">Editar</a>
                         </div>
                     </div>

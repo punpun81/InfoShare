@@ -1,32 +1,36 @@
-{% extends "base.html" %}
+{% extends "base.html" %}  <!-- Extiende de la plantilla base.html para reutilizar la estructura común de la página. -->
 
-{% load static %}
-{% block estilos %}
-<link rel="stylesheet" href="{% static 'producto/css/producto_crud.css' %}">
+{% load static %}  <!-- Carga los archivos estáticos de Django, lo que permite usar la etiqueta para acceder a recursos estáticos. -->
+
+{% block estilos %}  <!-- Define el bloque de estilos que puede ser sobrescrito en otras plantillas o páginas. -->
+<link rel="stylesheet" href="{% static 'producto/css/producto_crud.css' %}">  <!-- Carga la hoja de estilos 'producto_crud.css' desde la carpeta estática de productos. -->
 {% endblock %}
 
-{% block contenido %}
-<div class="container">
-    <div class="row">
-        <h2 class="text-center">¿Estás seguro de que deseas eliminar el siguiente producto?</h2>
+{% block contenido %}  <!-- Define el bloque de contenido principal para la página actual. -->
+<div class="container">  <!-- Contenedor principal con clases de Bootstrap para la disposición del contenido. -->
+    <div class="row">  <!-- Fila para organizar el contenido. -->
+        <h2 class="text-center">¿Estás seguro de que deseas eliminar el siguiente producto?</h2>  <!-- Título principal centrado de la página. -->
     </div>
-    <hr>
-    <div class="row">
-        <div class="d-flex justify-content-center">
-            <form method="post">
-                {% csrf_token %}
-                <div class="card">
-                    <div class="card-body">
-                        <h2>Detalles del producto</h2>
-                        <hr>
-                        <p><b>Nombre:</b> {{ producto.Nombre }}</p>
-                        <p><b>Descripción:</b> {{ producto.Descripcion }}</p>
-                        <p><b>Precio:</b> {{ producto.Precio }}</p>
-                        <p><b>Existencias:</b> {{ producto.Cantidad }}</p>
-                        <p><b>Estado:</b> {{ producto.Estado|yesno:"Disponible,No Disponible" }}</p>
-                        <hr>
-                        <div class="d-flex justify-content-between">
+    <hr>  <!-- Línea horizontal que separa el título de los detalles del producto. -->
+    <div class="row">  <!-- Fila para los detalles del producto y el formulario de eliminación. -->
+        <div class="d-flex justify-content-center">  <!-- Utiliza las clases de Flexbox de Bootstrap para centrar el contenido. -->
+            <form method="post">  <!-- Formulario que utiliza el método POST para enviar datos al servidor. -->
+                {% csrf_token %}  <!-- Etiqueta de protección CSRF (Cross-Site Request Forgery) para prevenir ataques. -->
+                <div class="card">  <!-- Card (tarjeta) de Bootstrap para contener los detalles del producto. -->
+                    <div class="card-body">  <!-- Contenido de la tarjeta. -->
+                        <h2>Detalles del producto</h2>  <!-- Subtítulo dentro de la tarjeta. -->
+                        <hr>  <!-- Línea horizontal para separar el título de los detalles del producto. -->
+                        <!-- Muestra los detalles del producto con los valores provenientes de la base de datos: -->
+                        <p><b>Nombre:</b> {{ producto.Nombre }}</p>  <!-- Muestra el nombre del producto. -->
+                        <p><b>Descripción:</b> {{ producto.Descripcion }}</p>  <!-- Muestra la descripción del producto. -->
+                        <p><b>Precio:</b> {{ producto.Precio }}</p>  <!-- Muestra el precio del producto. -->
+                        <p><b>Existencias:</b> {{ producto.Cantidad }}</p>  <!-- Muestra la cantidad disponible del producto. -->
+                        <p><b>Estado:</b> {{ producto.Estado|yesno:"Disponible,No Disponible" }}</p>  <!-- Muestra el estado del producto (Disponible o No Disponible). -->
+                        <hr>  <!-- Línea horizontal que separa los detalles del producto de las acciones disponibles. -->
+                        <div class="d-flex justify-content-between">  <!-- Utiliza Flexbox para distribuir el espacio entre los botones. -->
+                            <!-- Botón de eliminación que envía el formulario para eliminar el producto -->
                             <button type="submit" class="btn btn-outline-danger">Eliminar</button> |
+                            <!-- Enlace para volver a la lista de productos -->
                             <a class="btn btn-outline-info" href="{% url 'productos' %}">Volver</a>
                         </div>
                     </div>
@@ -35,4 +39,4 @@
         </div>
     </div>
 </div>
-{% endblock %}
+{% endblock %}  <!-- Fin del bloque de contenido -->

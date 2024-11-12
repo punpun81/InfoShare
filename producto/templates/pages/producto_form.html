@@ -1,32 +1,36 @@
-{% extends "base.html" %}
+{% extends "base.html" %}  <!-- Extiende de la plantilla base.html, reutilizando su estructura común (encabezado, pie de página, etc.). -->
 
-{% load static %}
-{% block estilos %}
-<link rel="stylesheet" href="{% static 'producto/css/producto_crud.css' %}">
+{% load static %}  <!-- Carga los archivos estáticos de Django, permitiendo usar la etiqueta para acceder a recursos estáticos como CSS, imágenes, etc. -->
+
+{% block estilos %}  <!-- Define un bloque de estilos CSS, que se puede sobrescribir en otras plantillas. -->
+<link rel="stylesheet" href="{% static 'producto/css/producto_crud.css' %}">  <!-- Carga la hoja de estilos 'producto_crud.css', que contiene los estilos específicos para la creación y edición de productos. -->
 {% endblock %}
 
-{% block contenido %}
-<div class="container mt-4">
-    <div class="row">
-        <div class="d-flex justify-content-center">
-            <div class="card w-50">
-                <div class="card-header">
-                    <h2 class="card-title text-center">
-                        {% if form.instance.ProductoId %}
+{% block contenido %}  <!-- Define el bloque de contenido principal para la página. -->
+<div class="container mt-4">  <!-- Contenedor de Bootstrap con margen superior (mt-4) para contener el formulario y centrarlo. -->
+    <div class="row">  <!-- Fila de Bootstrap para organizar el contenido dentro de columnas (en este caso solo una columna). -->
+        <div class="d-flex justify-content-center">  <!-- Utiliza Flexbox de Bootstrap para centrar el contenido (la tarjeta) horizontalmente en la página. -->
+            <div class="card w-50">  <!-- Crea una tarjeta de Bootstrap con un ancho del 50% del contenedor. -->
+                <div class="card-header">  <!-- Cabecera de la tarjeta, donde se coloca el título. -->
+                    <h2 class="card-title text-center">  <!-- Título centrado de la tarjeta. -->
+                        {% if form.instance.ProductoId %}  <!-- Si el formulario tiene un ProductoId (es decir, si es un formulario de edición), muestra "Editar Producto". -->
                             Editar Producto
-                        {% else %}
+                        {% else %}  <!-- Si el ProductoId no está presente (es decir, es un formulario de creación de producto), muestra "Guardar Producto". -->
                             Guardar Producto
                         {% endif %}
                     </h2>
                 </div>
-                <form method="post">
-                    <div class="card-body">
-                        {% csrf_token %}
-                        {{ form.as_p }}
+
+                <form method="post">  <!-- Inicia el formulario con el método POST para enviar los datos al servidor. -->
+                    <div class="card-body">  <!-- Cuerpo de la tarjeta donde se muestran los campos del formulario. -->
+                        {% csrf_token %}  <!-- Etiqueta CSRF para proteger el formulario contra ataques de falsificación de solicitudes. -->
+                        {{ form.as_p }}  <!-- Muestra el formulario renderizado como párrafos. Esto generará los campos del formulario definidos en la vista. -->
                     </div>
-                    <div class="card-footer d-flex justify-content-between">
-                        <button class="btn btn-outline-success" type="submit" >Guardar</button> |
-                        <a class="btn btn-outline-info" href="{% url 'productos' %}">Cancelar</a>
+
+                    <div class="card-footer d-flex justify-content-between">  <!-- Pie de la tarjeta, donde se colocan los botones de acción. -->
+                        <button class="btn btn-outline-success" type="submit">Guardar</button>  <!-- Botón para guardar el formulario. Tiene una clase 'btn-outline-success' de Bootstrap para un estilo de borde verde. -->
+                        | <!-- Separador visual entre los botones. -->
+                        <a class="btn btn-outline-info" href="{% url 'productos' %}">Cancelar</a>  <!-- Enlace para cancelar y volver a la lista de productos. Redirige a la URL correspondiente a la lista de productos. -->
                     </div>
                 </form>               
             </div>

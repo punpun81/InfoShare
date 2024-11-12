@@ -39,7 +39,7 @@ def index(request):
 #     return render(request, 'registration/signup.html', {'form': form})
 
 
-usuario = "Nuevo Usuario"
+usuario = "Bienvenid@"
 
 # Create your views here.
 def hola_mundo(request):

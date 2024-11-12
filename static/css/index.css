@@ -1,3 +1,18 @@
+
+
+
+.texto-izquierda {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #333;
+}
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
+
+
 /* Panel de administración */
 .admin-dashboard {
     padding: 20px;

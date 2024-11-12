@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .login-container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 300px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #003366;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .form-input:focus {
+            border-color: #007acc;
+            outline: none;
+        }
+
+        .login-btn {
+            background-color: #003366;
+            color: white;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .login-btn:hover {
+            background-color: #005bb5;
+        }
+
+        .link {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .link a {
+            color: #007acc;
+            text-decoration: none;
+        }
+
+        .link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <h2>Iniciar sesión</h2>
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" class="form-input" name="username" placeholder="Usuario" required>
+            <input type="password" class="form-input" name="password" placeholder="Contraseña" required>
+            <button type="submit" class="login-btn">Entrar</button>
+        </form>
+        
+    </div>
+
+</body>
+</html>

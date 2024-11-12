@@ -10,6 +10,13 @@ from django.urls import reverse_lazy
 # Importamos nuestro formulario
 from .forms import ProductosForm
 
+#J.R el from del video
+from django.contrib.auth.decorators import login_required
+
+@login_required
+
+def index(request):
+    return render(request, 'templates/home/base.html')
 # # views.py
 # from django.shortcuts import render, redirect
 # from django.contrib.auth.forms import UserCreationForm

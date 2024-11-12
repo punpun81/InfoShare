@@ -14,10 +14,19 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+# J.R
+
 from django.contrib import admin
-from django.urls import include, path
+from django.urls import path, include
+from django.shortcuts import redirect 
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("", include('producto.urls')),
+    path("productos/", include('producto.urls')), 
+    path('', lambda request: redirect('login/')),
+    path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    #path('accounts/', include('django.contrib.auth.urls')) ,
+    
 ]

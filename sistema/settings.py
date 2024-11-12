@@ -62,9 +62,9 @@ ROOT_URLCONF = 'sistema.urls'
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
+       'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],  
+        'APP_DIRS': True,  
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -134,8 +134,9 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 # # settings.py
-# LOGIN_REDIRECT_URL = '/'  # Redirige a la página principal después de iniciar sesión
-
+LOGIN_REDIRECT_URL = '/productos'  # Redirige a la página principal después de iniciar sesión
+LOGOUT_REDIRECT_URL = '/login/'
+LOGIN_URL = '/login/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
